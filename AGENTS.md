@@ -10,7 +10,7 @@
 - `runner/firewall.py` и `.github/workflows/routeros-firewall.yml` — отправка SSH-команды на RouterOS 7 через выделенный Linux self-hosted runner. Создаётся только **отключённое** правило `input` (IPv4, TCP/UDP, accept/drop).
 - `.github/workflows/build-windows.yml` — тесты и сборка неподписанного автономного Windows `setup.exe` с помощью PyInstaller; результат — Actions artifact `mikrotik-setup-windows`. Это приложение, не установщик.
 - `tests/` — unit-тесты без реального GitHub, SSH и роутера. `README.md` — инструкции по настройке и безопасному тестированию.
-- Реальное устройство, Windows GUI и сквозной workflow ещё не были проверены. Не описывайте их как проверенные без подтверждённых результатов.
+- Windows-сборка и unit-тесты прошли в GitHub Actions (см. `CHANGELOG.md`), но реальное устройство, запуск Windows GUI и сквозной workflow ещё не были проверены. Не описывайте их как проверенные без подтверждённых результатов.
 
 ## Рабочий процесс
 
