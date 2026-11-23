@@ -35,7 +35,10 @@ class FirewallTests(unittest.TestCase):
             key = args[args.index('-i') + 1]
             hosts = next(arg.split('=', 1)[1] for arg in args if arg.startswith('UserKnownHostsFile='))
             paths.extend([key, hosts])
-            self.assertEqual(os.stat(key).st_mode & 0o777, 0o600)
+            # POSIX mode bits are not represented faithfully by Windows stat.
+            # The production self-hosted runner is Linux.
+            if os.name == 'posix':
+                self.assertEqual(os.stat(key).st_mode & 0o777, 0o600)
             with open(key, encoding='utf-8') as f:
                 self.assertEqual(f.read(), 'private-key\n')
             self.assertIn('StrictHostKeyChecking=yes', args)
